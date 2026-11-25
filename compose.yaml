@@ -1,0 +1,12 @@
+services:
+  homeassistant:
+    container_name: smarthomeone-homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    stop_grace_period: 60s
+    network_mode: host
+    environment:
+      TZ: \${TZ:-America/Chicago}
+    volumes:
+      - ./ha-config:/config
+      - /etc/localtime:/etc/localtime:ro
