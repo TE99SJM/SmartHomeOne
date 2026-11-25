@@ -1,0 +1,10 @@
+# Local environment overrides and secrets
+.env
+ha-config/secrets.yaml
+
+# Home Assistant generated state and databases
+ha-config/.storage/
+ha-config/home-assistant_v2.db*
+ha-config/home-assistant.log*
+ha-config/blueprints/
+ha-config/tts/
