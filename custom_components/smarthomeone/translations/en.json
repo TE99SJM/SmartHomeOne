@@ -1,0 +1,14 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SmartHomeOne",
+        "description": "Add the SmartHomeOne device panel to the Home Assistant sidebar.",
+        "data": {}
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "SmartHomeOne is already set up."
+    }
+  }
+}

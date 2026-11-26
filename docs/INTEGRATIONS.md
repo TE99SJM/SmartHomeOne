@@ -1,29 +1,26 @@
 # Device integration model
 
-## Add devices now
+## Add devices in SmartHomeOne
 
-Use Home Assistant's Devices & Services screen to discover a device or add its integration. Home Assistant supports a large range of device categories and vendors. Check the specific integration requirements before choosing hardware.
+Open the SmartHomeOne sidebar panel, select a brand, then follow its setup path. The panel launches native Home Assistant flows for supported integrations and links to the Marketplace for community integrations that must be installed first.
+
+Home Assistant handles account credentials, discovery, device state, commands, and camera streams. SmartHomeOne displays the resulting entities.
+
+## Current brand paths
+
+- Owlet cameras: the community Owlet Cam integration; pre-release and hardware/architecture dependent.
+- Night Owl cameras: ONVIF Profile S or a manually supplied stream URL, if exposed by the model or recorder.
+- Hubspace: community integration using the Hubspace cloud service.
+- Leviton: supported Decora Wi-Fi models through My Leviton; Z-Wave models need a controller and Z-Wave JS server.
+
+Details and installation instructions are in [DEVICE_SUPPORT.md](DEVICE_SUPPORT.md).
 
 ## What determines compatibility
 
-A device can be added when at least one of these is true:
+A device can be added when Home Assistant has an integration for it, the device uses a supported standard or API, or a compatible radio coordinator and service are available. The brand alone does not guarantee compatibility for every model.
 
-- Home Assistant has an integration for the device or vendor.
-- The device uses a supported standard such as Matter, ONVIF, or a local network API.
-- A compatible coordinator is available for its radio, such as Zigbee or Z-Wave.
-- A future SmartHomeOne adapter implements the missing connection.
+Some radios such as Zigbee, Z-Wave, and Thread require compatible USB or network coordinators. Some integrations require internet access, third-party code, or additional services.
 
-This means “any device” is the project direction, not a claim that every device works without an integration, hub, or radio.
+## Extension path
 
-## Future SmartHomeOne adapter shape
-
-An adapter should:
-
-- declare vendor/protocol and supported capability types;
-- provide discovery and explicit setup/configuration;
-- map device state to common capabilities;
-- expose commands only when the device supports them;
-- report connection state and actionable errors;
-- keep credentials out of logs and source control.
-
-The first release does not define a code SDK yet. The adapter contract will be written when the first device gap cannot be filled by Home Assistant.
+Add new brand setup cards by declaring the Home Assistant integration domain, install source, supported capabilities, and compatibility requirements. Create a SmartHomeOne adapter only when Home Assistant has no suitable integration or supported protocol.

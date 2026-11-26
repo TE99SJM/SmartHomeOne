@@ -1,46 +1,46 @@
-# SmartHomeOne starter specification
+# SmartHomeOne specification
 
 ## Goal
 
-Create a local-first smart-home control foundation that can grow to support many brands and device types through a reusable integration ecosystem.
+Provide a local-first home automation web app with brand-focused device onboarding and a unified view of devices through Home Assistant.
 
 ## Product decisions
 
-- Home Assistant is the initial device integration and control engine.
-- SmartHomeOne will provide a simpler, unified experience over time; it will not reimplement every vendor protocol.
-- Users can add devices through Home Assistant integrations and discovery. Future SmartHomeOne adapters will cover gaps where useful.
-- The first milestone is a persistent Docker installation that opens the existing Home Assistant interface and can discover/control supported devices.
-- The first milestone targets the user's Ubuntu Docker server. A later installer can generalize deployment for other people.
-- Local network access is the default. Remote access should use an authenticated private route such as Tailscale.
+- Home Assistant is the integration and device-control engine.
+- SmartHomeOne is a Home Assistant integration that registers a sidebar panel and reads Home Assistant entity state.
+- Vendor credentials and device commands stay in Home Assistant integrations.
+- The first brand paths are Owlet, Night Owl, Hubspace, and Leviton.
+- Support is model/protocol-specific. The UI must state requirements and must not imply every model is compatible.
+- Local network access is the default. Remote access should use an authenticated private route.
 
-## First milestone scope
+## Scope
 
 ### Included
 
-- Docker Compose service for Home Assistant Container.
-- Persistent configuration directory and clean shutdown settings.
-- Network configuration suitable for local device discovery.
-- Setup instructions and integration extension guidance.
-- Clear boundaries between supported Home Assistant integrations and future SmartHomeOne-specific adapters.
+- Home Assistant custom integration installable from the built-in Marketplace.
+- Single-instance setup flow and SmartHomeOne sidebar panel.
+- One-click launch of native Home Assistant integration flows.
+- Install links for community integrations, with setup options shown after installation.
+- A unified list of entity state from connected integrations.
+- Documentation of brand, model, protocol, and architecture limits.
 
-### Not included yet
+### Not included
 
-- A custom SmartHomeOne dashboard.
-- Direct support for every vendor or every radio protocol.
-- User accounts or multi-home hosting.
-- Remote internet exposure.
-- Firmware changes to camera or other devices.
+- Reimplementing vendor APIs or credentials in SmartHomeOne.
+- Universal compatibility with every model under a brand.
+- A custom camera protocol, firmware modification, or cloud account bypass.
+- A full replacement for Home Assistant's entity controls or dashboards.
 
 ## Acceptance checks
 
-1. Starting the Compose project creates a Home Assistant service with config persisted on the host.
-2. The service can be opened from a browser on the home network at port 8123 and completes Home Assistant's first-run onboarding.
-3. Users can add supported integrations/devices through Home Assistant's Devices & Services and operate their exposed entities.
-4. Device-specific USB radios can be added later without hard-coding machine-specific device paths into the starter.
-5. No credentials, tokens, generated Home Assistant database, or user config secrets are committed.
-6. Documentation explains that device support depends on an available integration and may require a compatible coordinator or a separate Home Assistant installation type.
+1. An administrator can install SmartHomeOne from the public GitHub repository using Home Assistant Marketplace on Home Assistant 2026.11 or newer.
+2. Adding SmartHomeOne creates one sidebar panel; adding it a second time is rejected.
+3. Native Leviton and camera setup buttons launch the matching Home Assistant config flows.
+4. Owlet and Hubspace cards link to their community integration repositories and expose their setup flow after integration installation.
+5. The panel lists the entity names, states, and domains for supported Home Assistant entity types.
+6. Documentation explains camera protocol, community integration, Z-Wave, and model compatibility limits.
+7. No vendor passwords, tokens, private camera files, or Home Assistant generated data are stored in this repository.
 
-## Review notes
+## Review note
 
-- This foundation deliberately delegates device compatibility to Home Assistant's integration ecosystem.
-- The custom SmartHomeOne interface and onboarding should be developed as the next milestone after deployment and first device discovery are confirmed.
+This feature routes users to established Home Assistant integrations. A visible setup path does not certify that every product model has passed real-device validation.

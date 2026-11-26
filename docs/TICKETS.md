@@ -2,59 +2,50 @@
 
 ## Ticket 1 — Establish the product and integration boundary
 
-**Status:** Complete  
-**Depends on:** None
+**Status:** Complete
 
-- Define Home Assistant as the initial integration engine.
-- State what “any device” means and how unsupported devices can be added later.
-- Record observable acceptance checks.
+- Define Home Assistant as the integration and control engine.
+- State how product compatibility depends on integrations, standards, and coordinators.
 
-**Acceptance:** SPEC and ARCHITECTURE describe one consistent integration-first approach.
+**Acceptance:** SPEC and ARCHITECTURE use one consistent integration-first approach.
 
 ## Ticket 2 — Add a persistent local Docker foundation
 
-**Status:** Complete  
-**Depends on:** Ticket 1
+**Status:** Complete
 
 - Add a Compose service for Home Assistant Container.
 - Persist configuration in a host directory.
 - Use host networking for local discovery.
-- Set a clean shutdown grace period and configurable timezone.
 - Ignore generated state and secrets in Git.
 
 **Acceptance:** The repo documents one command to start Home Assistant and where to open it.
 
-## Ticket 3 — Add the first device
+## Ticket 3 — Confirm first camera connection
 
-**Status:** Next  
-**Depends on:** Ticket 2
+**Status:** In progress
 
-- Install the foundation on the user's server.
-- Add the Owlet camera if it has a supported integration or usable local stream.
-- Otherwise identify a camera exposing a documented local stream.
-- Confirm browser playback through the Home Assistant interface.
+- Add the user's Owlet camera through the SmartHomeOne guided flow or a compatible local stream.
+- Confirm browser playback through Home Assistant on the home network.
 
-**Acceptance:** A live camera view opens from the PC on the home network.
+**Acceptance:** A live camera view opens from the PC on the home network. This requires a compatible camera model and installation path.
 
-## Ticket 4 — Build the SmartHomeOne dashboard shell
+## Ticket 4 — Add SmartHomeOne panel and brand onboarding
 
-**Status:** Planned  
-**Depends on:** Ticket 2
+**Status:** Implemented; runtime validation pending
 
-- Create a responsive dashboard that consumes Home Assistant entities.
-- Start with switches/plugs, lights, sensors, and cameras.
-- Group devices by room, type, and availability.
-- Keep Home Assistant responsible for authentication and device actions.
+- Install SmartHomeOne through the Home Assistant Marketplace.
+- Provide setup paths for Owlet, Night Owl, Hubspace, and Leviton.
+- List entity state from connected integrations.
+- Document compatibility requirements and community software.
 
-**Acceptance:** Supported entities appear without a SmartHomeOne code change for each new device.
+**Acceptance:** Each brand card starts or links to its installation path, and connected entities are visible.
 
-## Ticket 5 — Add integration onboarding and adapter SDK
+## Ticket 5 — Expand the SmartHomeOne device dashboard
 
-**Status:** Planned  
-**Depends on:** Ticket 4
+**Status:** Planned
 
-- Show available Home Assistant integrations and device-add instructions.
-- Define a documented adapter interface for devices Home Assistant does not support.
-- Add capability declarations, health reporting, and adapter versioning.
+- Add entity controls, room grouping, and device-type views.
+- Keep Home Assistant responsible for authentication and device commands.
+- Add each new brand through metadata-driven onboarding when possible.
 
-**Acceptance:** A developer can add an adapter without changing the core dashboard.
+**Acceptance:** Users can view and control supported devices in SmartHomeOne after adding the integration once.
