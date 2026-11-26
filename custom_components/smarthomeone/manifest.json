@@ -1,0 +1,13 @@
+{
+  "domain": "smarthomeone",
+  "name": "SmartHomeOne",
+  "codeowners": ["TE99SJM"],
+  "config_flow": true,
+  "dependencies": ["frontend", "http", "panel_custom"],
+  "documentation": "https://github.com/TE99SJM/SmartHomeOne/blob/main/docs/DEVICE_SUPPORT.md",
+  "integration_type": "hub",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/TE99SJM/SmartHomeOne/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
