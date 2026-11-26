@@ -4,6 +4,8 @@ const BRANDS = [
     description:
       "Install the community Owlet Cam integration, then add the camera here. Support is pre-release and model, region, and server architecture matter.",
     repository: "https://github.com/ohlsont/ha-owlet-cam",
+    marketplace:
+      "https://my.home-assistant.io/redirect/hacs_repository/?owner=ohlsont&repository=ha-owlet-cam&category=integration",
     integration: "owlet_cam",
   },
   {
@@ -17,6 +19,8 @@ const BRANDS = [
     description:
       "Install the community Hubspace integration first. It connects through the Hubspace cloud and uses your Hubspace account.",
     repository: "https://github.com/Emkraan/homeassistant-hubspace",
+    marketplace:
+      "https://my.home-assistant.io/redirect/hacs_repository/?owner=Emkraan&repository=homeassistant-hubspace&category=integration",
     integration: "hubspace",
   },
   {
@@ -126,12 +130,18 @@ class SmartHomeOnePanel extends HTMLElement {
     actions.className = "actions";
 
     if (brand.repository) {
+      const marketplace = document.createElement("a");
+      marketplace.className = "action";
+      marketplace.href = brand.marketplace;
+      marketplace.textContent = "Open in Marketplace";
+      actions.appendChild(marketplace);
+
       const repository = document.createElement("a");
       repository.className = "action secondary";
       repository.href = brand.repository;
       repository.target = "_blank";
       repository.rel = "noopener noreferrer";
-      repository.textContent = "Install integration";
+      repository.textContent = "Repository details";
       actions.appendChild(repository);
 
       if (this.hasIntegration(brand.integration)) {
